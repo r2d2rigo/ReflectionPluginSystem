@@ -4,18 +4,6 @@ using System.Collections.ObjectModel;
 
 namespace ReflectionPluginSystem.ViewModel
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-    /// </para>
-    /// <para>
-    /// You can also use Blend to data bind with the tool's support.
-    /// </para>
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
     public class MainViewModel : ViewModelBase
     {
         private const string PluginsFolder = "Plugins";
@@ -30,8 +18,35 @@ namespace ReflectionPluginSystem.ViewModel
             }
             private set
             {
-                this.plugins = value;
+                if (this.plugins != value)
+                {
+                    this.plugins = value;
+                    this.RaisePropertyChanged(() => this.Plugins);
+                }
             }
+        }
+
+        private IPluginInterface selectedPlugin;
+        public IPluginInterface SelectedPlugin
+        {
+            get
+            {
+                return this.selectedPlugin;
+            }
+            set
+            {
+                if (this.selectedPlugin != value)
+                {
+                    this.selectedPlugin = value;
+                    this.RaisePropertyChanged(() => this.SelectedPlugin);
+                }
+            }
+        }
+
+        public string ApplicationLog
+        {
+            get;
+            private set;
         }
 
         /// <summary>
