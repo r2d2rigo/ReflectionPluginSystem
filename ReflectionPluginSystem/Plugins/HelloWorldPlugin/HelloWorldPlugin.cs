@@ -28,5 +28,10 @@ namespace HelloWorldPlugin
         {
             return "Hello, World!";
         }
+
+        public override string ToString()
+        {
+            return this.Name + " " + this.Version.ToString();
+        }
     }
 }

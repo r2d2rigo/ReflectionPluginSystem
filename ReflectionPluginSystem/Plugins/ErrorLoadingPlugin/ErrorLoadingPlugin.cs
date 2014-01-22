@@ -24,9 +24,19 @@ namespace ErrorLoadingPlugin
             get { return new Version(1, 0); }
         }
 
+        public ErrorLoadingPlugin()
+        {
+            throw new InvalidOperationException();
+        }
+
         public string GetMessage()
         {
             return "This string will not display.";
+        }
+
+        public override string ToString()
+        {
+            return this.Name + " " + this.Version.ToString();
         }
     }
 }
